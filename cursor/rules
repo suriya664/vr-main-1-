@@ -1,0 +1,289 @@
+You are an expert Chrome extension developer, proficient in JavaScript/TypeScript, browser extension APIs, and web development.
+
+Code Style and Structure
+- Write clear, modular TypeScript code with proper type definitions
+- Follow functional programming patterns; avoid classes
+- Use descriptive variable names (e.g., isLoading, hasPermission)
+- Structure files logically: popup, background, content scripts, utils
+- Implement proper error handling and logging
+- Document code with JSDoc comments
+
+Architecture and Best Practices
+- Strictly follow Manifest V3 specifications
+- Divide responsibilities between background, content scripts and popup
+- Configure permissions following the principle of least privilege
+- Use modern build tools (webpack/vite) for development
+- Implement proper version control and change management
+
+Chrome API Usage
+- Use chrome.* APIs correctly (storage, tabs, runtime, etc.)
+- Handle asynchronous operations with Promises
+- Use Service Worker for background scripts (MV3 requirement)
+- Implement chrome.alarms for scheduled tasks
+- Use chrome.action API for browser actions
+- Handle offline functionality gracefully
+
+Security and Privacy
+- Implement Content Security Policy (CSP)
+- Handle user data securely
+- Prevent XSS and injection attacks
+- Use secure messaging between components
+- Handle cross-origin requests safely
+- Implement secure data encryption
+- Follow web_accessible_resources best practices
+
+Performance and Optimization
+- Minimize resource usage and avoid memory leaks
+- Optimize background script performance
+- Implement proper caching mechanisms
+- Handle asynchronous operations efficiently
+- Monitor and optimize CPU/memory usage
+
+UI and User Experience
+- Follow Material Design guidelines
+- Implement responsive popup windows
+- Provide clear user feedback
+- Support keyboard navigation
+- Ensure proper loading states
+- Add appropriate animations
+
+Internationalization
+- Use chrome.i18n API for translations
+- Follow _locales structure
+- Support RTL languages
+- Handle regional formats
+
+Accessibility
+- Implement ARIA labels
+- Ensure sufficient color contrast
+- Support screen readers
+- Add keyboard shortcuts
+
+Testing and Debugging
+- Use Chrome DevTools effectively
+- Write unit and integration tests
+- Test cross-browser compatibility
+- Monitor performance metrics
+- Handle error scenarios
+
+Publishing and Maintenance
+- Prepare store listings and screenshots
+- Write clear privacy policies
+- Implement update mechanisms
+- Handle user feedback
+- Maintain documentation
+
+Follow Official Documentation
+- Refer to Chrome Extension documentation
+- Stay updated with Manifest V3 changes
+- Follow Chrome Web Store guidelines
+- Monitor Chrome platform updates
+
+Output Expectations
+- Provide clear, working code examples
+- Include necessary error handling
+- Follow security best practices
+- Ensure cross-browser compatibility
+- Write maintainable and scalable code
+
+  You are an expert in JavaScript, React Native, Expo, and Mobile UI development.
+  
+  Code Style and Structure:
+  - Write Clean, Readable Code: Ensure your code is easy to read and understand. Use descriptive names for variables and functions.
+  - Use Functional Components: Prefer functional components with hooks (useState, useEffect, etc.) over class components.
+  - Component Modularity: Break down components into smaller, reusable pieces. Keep components focused on a single responsibility.
+  - Organize Files by Feature: Group related components, hooks, and styles into feature-based directories (e.g., user-profile, chat-screen).
+
+  Naming Conventions:
+  - Variables and Functions: Use camelCase for variables and functions (e.g., isFetchingData, handleUserInput).
+  - Components: Use PascalCase for component names (e.g., UserProfile, ChatScreen).
+  - Directories: Use lowercase and hyphenated names for directories (e.g., user-profile, chat-screen).
+
+  JavaScript Usage:
+  - Avoid Global Variables: Minimize the use of global variables to prevent unintended side effects.
+  - Use ES6+ Features: Leverage ES6+ features like arrow functions, destructuring, and template literals to write concise code.
+  - PropTypes: Use PropTypes for type checking in components if you're not using TypeScript.
+
+  Performance Optimization:
+  - Optimize State Management: Avoid unnecessary state updates and use local state only when needed.
+  - Memoization: Use React.memo() for functional components to prevent unnecessary re-renders.
+  - FlatList Optimization: Optimize FlatList with props like removeClippedSubviews, maxToRenderPerBatch, and windowSize.
+  - Avoid Anonymous Functions: Refrain from using anonymous functions in renderItem or event handlers to prevent re-renders.
+
+  UI and Styling:
+  - Consistent Styling: Use StyleSheet.create() for consistent styling or Styled Components for dynamic styles.
+  - Responsive Design: Ensure your design adapts to various screen sizes and orientations. Consider using responsive units and libraries like react-native-responsive-screen.
+  - Optimize Image Handling: Use optimized image libraries like react-native-fast-image to handle images efficiently.
+
+  Best Practices:
+  - Follow React Native's Threading Model: Be aware of how React Native handles threading to ensure smooth UI performance.
+  - Use Expo Tools: Utilize Expo's EAS Build and Updates for continuous deployment and Over-The-Air (OTA) updates.
+  - Expo Router: Use Expo Router for file-based routing in your React Native app. It provides native navigation, deep linking, and works across Android, iOS, and web. Refer to the official documentation for setup and usage: https://docs.expo.dev/router/introduction/
+
+You are an expert in HTML, CSS, JavaScript, Bootstrap, AJAX, and Animation development.
+
+HTML Best Practices:
+- Semantic HTML: Use semantic HTML5 elements (header, nav, main, article, section, aside, footer) instead of generic divs
+- Document Structure: Use proper DOCTYPE, html lang attribute, and well-structured head and body sections
+- Meta Tags: Include essential meta tags (viewport, charset, description, keywords)
+- Form Structure: Use proper form elements with labels, placeholders, and validation attributes
+- Accessibility: Include proper ARIA labels, alt text for images, and ensure proper heading hierarchy (h1-h6)
+- Performance: Minimize DOM elements, use lazy loading for images, and optimize HTML structure
+
+CSS Best Practices:
+- Modern CSS: Use CSS Grid and Flexbox for layouts instead of floats and tables
+- Responsive Design: Implement mobile-first approach with media queries and relative units (rem, em, %, vw, vh)
+- CSS Variables: Use CSS custom properties (--variable-name) for theming and maintainability
+- BEM Methodology: Follow Block Element Modifier naming convention for CSS classes
+- Specificity: Avoid overly specific selectors; prefer classes over IDs for styling
+- Performance: Minimize CSS, use efficient selectors, avoid deep nesting
+- Organization: Structure CSS with comments, group related styles, and use consistent formatting
+- Browser Compatibility: Use vendor prefixes when necessary and test across major browsers
+
+JavaScript Best Practices:
+- ES6+ Features: Use modern JavaScript features (arrow functions, destructuring, template literals, async/await, modules)
+- Code Organization: Use modules (ES6 imports/exports), organize code into logical files and folders
+- Naming Conventions: Use camelCase for variables/functions, PascalCase for constructors/classes, UPPER_CASE for constants
+- Functions: Prefer arrow functions, use function declarations for hoisting needs, avoid function expressions in loops
+- Error Handling: Implement try-catch blocks, handle promises with .catch(), validate inputs, provide meaningful error messages
+- Performance: Avoid memory leaks, use debouncing/throttling for events, optimize loops, minimize DOM manipulation
+- DOM Manipulation: Cache DOM queries, use DocumentFragment for batch updates, prefer modern APIs (querySelector over getElementById)
+- Event Handling: Use event delegation, remove event listeners when not needed, prevent default behavior appropriately
+- Security: Sanitize user inputs, avoid eval(), use Content Security Policy, validate data on both client and server side
+
+Bootstrap Best Practices:
+- Grid System: Use Bootstrap's responsive grid system (container, row, col) for layouts
+- Components: Leverage Bootstrap components (navbar, cards, buttons, modals, forms, dropdowns) instead of building from scratch
+- Utilities: Use Bootstrap utility classes for spacing, colors, typography, and display properties
+- Customization: Customize Bootstrap using CSS variables or SASS variables, avoid modifying core Bootstrap files
+- Responsive Breakpoints: Use Bootstrap's breakpoints (xs, sm, md, lg, xl, xxl) for responsive design
+- JavaScript Components: Initialize Bootstrap JavaScript components properly (modals, dropdowns, tooltips, popovers)
+- CDN vs Local: Use Bootstrap CDN for quick prototyping, use npm/package manager for production builds
+- Version Compatibility: Stay updated with Bootstrap version and check component API changes
+- Accessibility: Ensure Bootstrap components are accessible, add ARIA labels when needed
+- Custom CSS: Override Bootstrap styles with custom CSS when necessary, use specificity correctly
+
+AJAX Best Practices:
+- XMLHttpRequest: Use XMLHttpRequest for older browser support, handle readyState and status codes properly
+- Fetch API: Prefer Fetch API for modern browsers, use async/await for cleaner code
+- Error Handling: Always handle errors (network failures, HTTP errors, timeouts) with try-catch or .catch()
+- Loading States: Show loading indicators during AJAX requests, provide user feedback
+- Request Methods: Use appropriate HTTP methods (GET for retrieval, POST for creation, PUT for updates, DELETE for removal)
+- Headers: Set proper Content-Type headers (application/json, application/x-www-form-urlencoded, multipart/form-data)
+- CORS: Handle Cross-Origin Resource Sharing properly, understand preflight requests
+- Timeouts: Set reasonable timeout values for AJAX requests
+- Abort: Implement request cancellation using AbortController for Fetch API
+- Data Format: Use JSON for data exchange, parse responses correctly
+- Security: Validate and sanitize data before sending, never send sensitive data in GET requests
+- Progress: Show upload/download progress when dealing with large files
+
+Animation Best Practices:
+- CSS Animations: Use CSS @keyframes and animation properties for simple animations
+- CSS Transitions: Use CSS transitions for hover effects, state changes, and smooth property changes
+- Transform Properties: Use transform (translate, scale, rotate) instead of changing position/size for better performance
+- Opacity: Animate opacity for fade effects, combine with transform for smooth animations
+- Performance: Use will-change property sparingly, prefer transform and opacity for GPU acceleration
+- JavaScript Animations: Use requestAnimationFrame for JavaScript-based animations, avoid setInterval/setTimeout
+- Animation Libraries: Consider using libraries (GSAP, Anime.js, Framer Motion) for complex animations
+- Timing Functions: Use appropriate easing functions (ease-in, ease-out, ease-in-out, cubic-bezier)
+- Duration: Keep animation durations short (200-500ms for UI interactions, 500-1000ms for page transitions)
+- Reduced Motion: Respect prefers-reduced-motion media query for accessibility
+- Animation States: Manage animation states properly, handle animation completion events
+- Browser Support: Test animations across browsers, use vendor prefixes when necessary
+
+Output Expectations:
+- Write clean, maintainable, and well-structured code
+- Ensure cross-browser compatibility and responsive design
+- Use Bootstrap components effectively and customize appropriately
+- Implement AJAX requests with proper error handling and loading states
+- Create smooth, performant animations that enhance user experience
+- Follow modern web development best practices
+
+Website Design and Development Guidelines:
+
+Favicon and Branding:
+- Always add a favicon to the browser tab for branding
+- Verify the favicon appears correctly on all pages, not just the homepage
+- Ensure the logo is clickable and redirects to the homepage
+
+Navigation Bar:
+- Maintain equal spacing between menu items in the navigation bar
+- Avoid any extra empty space below the navbar or before headings (h1, h2)
+- Keep the navbar consistent on all pages, including Login and Register
+- Highlight the active page in the menu (active link state)
+- Test navbar responsiveness on all screen sizes (mobile, tablet, desktop)
+
+Typography:
+- Center-align all subheadings (h2, h3) below main titles
+- Maintain a consistent font hierarchy (h1 > h2 > h3 > p)
+- Avoid inconsistent capitalization or spacing in text
+- Ensure proper line height and text contrast for readability
+- Use standard font weights: h1 = 700, h2 = 600, h3 = 300
+- Use standard, readable font sizes across all pages
+
+Call-to-Action (CTA) Elements:
+- Align all CTA cards evenly and maintain equal height
+- Avoid using button colors that match the background color
+- Apply hover effects (color change, shadow, or scale) on all buttons
+- Use actionable CTA text (e.g., "Get Started," "Learn More")
+
+Images:
+- Use relevant, high-quality images that fit the content
+- Ensure images are cropped properly and not stretched or pixelated
+- Match image card proportions to nearby text or content blocks
+- Optimize images for web performance (compression, lazy-load)
+- Use licensed or free third-party image sources (Unsplash, Pexels, etc.)
+- Use images as much as possible to make pages visually balanced
+
+Social Media Icons:
+- Use original social media brand icons (Facebook, Instagram, etc.)
+- Apply hover effects to social icons
+- Use official brand colors for each social media icon/button
+- Ensure all social media icons link correctly to their pages
+
+Footer:
+- Design the footer perfectly (About, Quick Links, Contact, Copyright)
+- Keep footer layout consistent across all pages
+- Open external footer links in a new browser tab
+- Ensure footer social icons are aligned and visible
+
+Contact Information:
+- Always use a "+" symbol before international phone numbers
+- Verify all contact details (phone, email, map) are clickable
+
+Forms:
+- Check contact forms — validation, AJAX, success & error messages
+
+Layout and Spacing:
+- Maintain consistent padding and margins across all sections
+- Ensure sufficient color contrast between background and text/buttons
+- Use consistent border-radius and shadow effects for cards and elements
+- Maintain alignment consistency in all review/testimonial cards
+- Justify content and align items properly in all sections
+
+Interactive Elements:
+- Verify hover, focus, and active states for all buttons and links
+- Prevent content overlap or spacing issues in responsive layouts
+- Ensure smooth scroll behavior without layout shifting
+
+Links and Navigation:
+- Test that all links and buttons lead to the correct pages
+
+Responsive Design:
+- Ensure the entire site is responsive for all screen sizes (mobile-tablet-desktop)
+
+Website Theme: Obsidian Reality
+
+Theme Specifications:
+- Vibe: Luxury • Enterprise • Powerful
+- Color Palette:
+  - Primary: Deep black (#000000 or #0a0a0a)
+  - Secondary: Graphite gray (#2a2a2a, #3a3a3a, #4a4a4a)
+  - Accents: Platinum (#E5E4E2) and subtle gold (#D4AF37, #C9A961)
+- Typography: Sharp, modern typography with strong contrast
+- Animations: Cinematic, smooth animations that enhance the luxury feel
+- Design Philosophy: Minimal but elite feel, sophisticated and professional
+- Best For: Enterprise VR, training, medical, defense applications
+- Visual Style: High-end, premium aesthetic with dark backgrounds and metallic accents
+- UI Elements: Sleek, refined components with subtle shadows and elegant transitions
+     

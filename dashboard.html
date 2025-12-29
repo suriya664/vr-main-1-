@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard - Obsidian Reality">
+    <title>Dashboard - Obsidian Reality</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-container {
+            min-height: 100vh;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--obsidian-black) 0%, var(--graphite-gray-dark) 100%);
+        }
+        .dashboard-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--graphite-gray);
+            text-align: center;
+        }
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: var(--obsidian-black-light);
+            border: 1px solid var(--graphite-gray-dark);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all var(--transition-normal);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-subtle);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-subtle);
+            margin-bottom: 0.25rem;
+        }
+        .stat-label {
+            color: var(--platinum-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dashboard-section {
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--platinum);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-subtle);
+        }
+        .activity-list {
+            list-style: none;
+        }
+        .activity-item {
+            background: var(--obsidian-black-light);
+            border-left: 3px solid var(--gold-subtle);
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-radius: 4px;
+        }
+        .activity-time {
+            color: var(--platinum-dark);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        .chart-placeholder {
+            background: var(--obsidian-black-light);
+            border: 1px solid var(--graphite-gray-dark);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--platinum-dark);
+        }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .action-btn {
+            background: var(--graphite-gray-dark);
+            border: 1px solid var(--graphite-gray);
+            color: var(--platinum);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-align: center;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        .action-btn:hover {
+            background: var(--gold-subtle);
+            color: var(--obsidian-black);
+            border-color: var(--gold-subtle);
+            transform: translateY(-2px);
+        }
+        
+        .back-home-icon {
+            position: fixed;
+            top: 5rem;
+            left: 1rem;
+            z-index: 1000;
+            background: var(--obsidian-black-light);
+            border: 1px solid var(--graphite-gray-dark);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .back-home-icon:hover {
+            background: var(--gold-subtle);
+            border-color: var(--gold-subtle);
+            transform: scale(1.1);
+        }
+        
+        .back-home-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--platinum);
+            transition: fill var(--transition-fast);
+        }
+        
+        .back-home-icon:hover svg {
+            fill: var(--obsidian-black);
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+            
+            .back-home-icon {
+                width: 45px;
+                height: 45px;
+                top: 4.5rem;
+                left: 0.75rem;
+            }
+            
+            .back-home-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .main-content-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
+            }
+            
+            .chart-placeholder {
+                min-height: 200px;
+                padding: 1rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .additional-sections {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .back-home-icon {
+                width: 45px;
+                height: 45px;
+                top: 4.5rem;
+                left: 0.75rem;
+            }
+            
+            .back-home-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .dashboard-container {
+                padding: 0.75rem;
+            }
+            
+            .dashboard-header {
+                margin-bottom: 1rem;
+                padding-bottom: 0.75rem;
+            }
+            
+            .dashboard-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .dashboard-header p {
+                font-size: 1rem;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .stat-card {
+                padding: 0.75rem;
+            }
+            
+            .stat-value {
+                font-size: 1.75rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            .main-content-grid {
+                margin-bottom: 1rem !important;
+            }
+            
+            .dashboard-section {
+                margin-bottom: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.125rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .chart-placeholder {
+                min-height: 180px;
+                padding: 0.75rem;
+            }
+            
+            .chart-placeholder p {
+                font-size: 0.9rem !important;
+            }
+            
+            .activity-item {
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                margin-top: 0.75rem;
+            }
+            
+            .action-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .additional-sections {
+                gap: 0.75rem !important;
+            }
+            
+            .system-status-card,
+            .events-card,
+            .modules-card,
+            .growth-card,
+            .users-card {
+                padding: 0.75rem !important;
+            }
+            
+            .system-status-item {
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .event-item {
+                margin-bottom: 0.75rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+            
+            .module-item {
+                margin-bottom: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logout Button Only -->
+    <header style="background: var(--obsidian-black-light); border-bottom: 1px solid var(--graphite-gray-dark); padding: 1rem 0;">
+        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+            <a href="index.html" class="btn btn-primary" style="text-decoration: none;">Logout</a>
+        </div>
+    </header>
+    
+    <div class="dashboard-container">
+        <div class="container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1>Dashboard</h1>
+                <p style="color: var(--platinum-dark); font-size: 1.125rem;">Welcome back! Here's an overview of your VR enterprise solutions.</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="dashboard-stats">
+                <div class="stat-card fade-in">
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-value">342</div>
+                    <div class="stat-label">Training Sessions</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">Completion Rate</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-value">$124K</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="main-content-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <!-- Left Column -->
+                <div>
+                    <!-- Performance Chart -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title">Performance Overview</h3>
+                        <div class="chart-placeholder">
+                            <div style="text-align: center;">
+                                <p style="font-size: 1.25rem; margin-bottom: 0.75rem;">Performance Analytics</p>
+                                <p style="color: var(--platinum-dark);">Chart visualization would appear here</p>
+                                <p style="color: var(--platinum-dark); font-size: 0.9rem; margin-top: 0.75rem;">Showing user engagement, session duration, and completion rates over the last 30 days</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title">Recent Activity</h3>
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <strong style="color: var(--platinum);">New Training Module Deployed</strong>
+                                <p style="color: var(--platinum-dark); margin: 0.25rem 0;">Advanced Medical VR Training Module v2.1 has been successfully deployed to production.</p>
+                                <div class="activity-time">2 hours ago</div>
+                            </li>
+                            <li class="activity-item">
+                                <strong style="color: var(--platinum);">User Registration Spike</strong>
+                                <p style="color: var(--platinum-dark); margin: 0.25rem 0;">127 new users registered in the last 24 hours, representing a 15% increase.</p>
+                                <div class="activity-time">5 hours ago</div>
+                            </li>
+                            <li class="activity-item">
+                                <strong style="color: var(--platinum);">System Update Completed</strong>
+                                <p style="color: var(--platinum-dark); margin: 0.25rem 0;">Security patch v3.4.2 has been applied across all VR platforms.</p>
+                                <div class="activity-time">1 day ago</div>
+                            </li>
+                            <li class="activity-item">
+                                <strong style="color: var(--platinum);">Monthly Report Generated</strong>
+                                <p style="color: var(--platinum-dark); margin: 0.25rem 0;">Q1 2025 performance report has been generated and sent to stakeholders.</p>
+                                <div class="activity-time">2 days ago</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Quick Actions -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title">Quick Actions</h3>
+                        <div class="quick-actions">
+                            <div class="action-btn">Create Session</div>
+                            <div class="action-btn">Add User</div>
+                            <div class="action-btn">Generate Report</div>
+                            <div class="action-btn">View Analytics</div>
+                            <div class="action-btn">Manage Modules</div>
+                            <div class="action-btn">Settings</div>
+                        </div>
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title">System Status</h3>
+                        <div class="system-status-card" style="background: var(--obsidian-black-light); border: 1px solid var(--graphite-gray-dark); border-radius: 8px; padding: 1rem;">
+                            <div class="system-status-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <span style="color: var(--platinum);">VR Platform</span>
+                                <span style="color: #4CAF50; font-weight: 600;">● Online</span>
+                            </div>
+                            <div class="system-status-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <span style="color: var(--platinum);">Database</span>
+                                <span style="color: #4CAF50; font-weight: 600;">● Operational</span>
+                            </div>
+                            <div class="system-status-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                <span style="color: var(--platinum);">API Services</span>
+                                <span style="color: #4CAF50; font-weight: 600;">● Running</span>
+                            </div>
+                            <div class="system-status-item" style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--platinum);">CDN</span>
+                                <span style="color: #4CAF50; font-weight: 600;">● Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events -->
+                    <div class="dashboard-section">
+                        <h3 class="section-title">Upcoming Events</h3>
+                        <div class="events-card" style="background: var(--obsidian-black-light); border: 1px solid var(--graphite-gray-dark); border-radius: 8px; padding: 1rem;">
+                            <div class="event-item" style="margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                                <div style="color: var(--gold-subtle); font-weight: 600; margin-bottom: 0.25rem;">VR Training Workshop</div>
+                                <div style="color: var(--platinum-dark); font-size: 0.9rem;">March 15, 2025 at 2:00 PM</div>
+                            </div>
+                            <div class="event-item" style="margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                                <div style="color: var(--gold-subtle); font-weight: 600; margin-bottom: 0.25rem;">Quarterly Review</div>
+                                <div style="color: var(--platinum-dark); font-size: 0.9rem;">March 20, 2025 at 10:00 AM</div>
+                            </div>
+                            <div>
+                                <div style="color: var(--gold-subtle); font-weight: 600; margin-bottom: 0.25rem;">System Maintenance</div>
+                                <div style="color: var(--platinum-dark); font-size: 0.9rem;">March 25, 2025 at 11:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Sections -->
+            <div class="additional-sections" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <!-- Top Modules -->
+                <div class="dashboard-section">
+                    <h3 class="section-title">Top Training Modules</h3>
+                    <div class="modules-card" style="background: var(--obsidian-black-light); border: 1px solid var(--graphite-gray-dark); border-radius: 8px; padding: 1rem;">
+                        <div class="module-item" style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--platinum);">Medical VR Training</span>
+                                <span style="color: var(--gold-subtle);">1,234 sessions</span>
+                            </div>
+                            <div style="background: var(--graphite-gray-dark); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--gold-subtle); height: 100%; width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="module-item" style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--platinum);">Defense Simulation</span>
+                                <span style="color: var(--gold-subtle);">892 sessions</span>
+                            </div>
+                            <div style="background: var(--graphite-gray-dark); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--gold-subtle); height: 100%; width: 72%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--platinum);">Enterprise Training</span>
+                                <span style="color: var(--gold-subtle);">567 sessions</span>
+                            </div>
+                            <div style="background: var(--graphite-gray-dark); height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: var(--gold-subtle); height: 100%; width: 58%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Growth -->
+                <div class="dashboard-section">
+                    <h3 class="section-title">User Growth</h3>
+                    <div class="growth-card" style="background: var(--obsidian-black-light); border: 1px solid var(--graphite-gray-dark); border-radius: 8px; padding: 1rem;">
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <div style="font-size: 3rem; font-weight: 700; color: var(--gold-subtle); margin-bottom: 0.25rem;">+23%</div>
+                            <div style="color: var(--platinum-dark);">Growth this month</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-around; margin-top: 1.5rem;">
+                            <div style="text-align: center;">
+                                <div style="color: var(--platinum); font-weight: 600; margin-bottom: 0.5rem;">New Users</div>
+                                <div style="color: var(--gold-subtle); font-size: 1.5rem;">127</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--platinum); font-weight: 600; margin-bottom: 0.5rem;">Active</div>
+                                <div style="color: var(--gold-subtle); font-size: 1.5rem;">1,089</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Users -->
+                <div class="dashboard-section">
+                    <h3 class="section-title">Recent Users</h3>
+                    <div class="users-card" style="background: var(--obsidian-black-light); border: 1px solid var(--graphite-gray-dark); border-radius: 8px; padding: 1rem;">
+                        <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                            <div style="color: var(--platinum); font-weight: 600; margin-bottom: 0.25rem;">John Smith</div>
+                            <div style="color: var(--platinum-dark); font-size: 0.9rem;">john.smith@enterprise.com</div>
+                            <div style="color: var(--gold-subtle); font-size: 0.85rem; margin-top: 0.25rem;">Joined 2 hours ago</div>
+                        </div>
+                        <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--graphite-gray-dark);">
+                            <div style="color: var(--platinum); font-weight: 600; margin-bottom: 0.25rem;">Sarah Johnson</div>
+                            <div style="color: var(--platinum-dark); font-size: 0.9rem;">sarah.j@company.com</div>
+                            <div style="color: var(--gold-subtle); font-size: 0.85rem; margin-top: 0.25rem;">Joined 5 hours ago</div>
+                        </div>
+                        <div>
+                            <div style="color: var(--platinum); font-weight: 600; margin-bottom: 0.25rem;">Michael Chen</div>
+                            <div style="color: var(--platinum-dark); font-size: 0.9rem;">m.chen@techcorp.com</div>
+                            <div style="color: var(--gold-subtle); font-size: 0.85rem; margin-top: 0.25rem;">Joined 1 day ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

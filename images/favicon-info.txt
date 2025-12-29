@@ -1,0 +1,18 @@
+FAVICON SETUP INSTRUCTIONS
+===========================
+
+To add a proper favicon to your website:
+
+1. Create a favicon.ico file (16x16, 32x32, or 48x48 pixels)
+2. Place it in the images/ folder
+3. The HTML files are already configured to use images/favicon.ico
+
+Alternatively, you can:
+- Use an online favicon generator (e.g., favicon.io)
+- Convert the provided favicon.svg to .ico format
+- Use a PNG image and convert it to .ico
+
+The current setup references: <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+For now, browsers will use the default favicon if favicon.ico doesn't exist.
+
